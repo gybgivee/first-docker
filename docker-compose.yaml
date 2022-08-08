@@ -1,9 +1,9 @@
 version: '3'
 services:
-  # my-app:
-  # image: ${docker-registry}/my-app:1.0
-  # ports:
-  # - 3000:3000
+  #my-app:
+    #image: 026252222391.dkr.ecr.eu-west-2.amazonaws.com/my-app/my-app:1.0
+    #ports:
+    #  - 3000:3000
   mongodb:
     image: mongo
     ports:
@@ -11,6 +11,7 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
+    #this is called named volumes
     volumes:
       - mongo-data:/data/db
   mongo-express:
@@ -22,6 +23,8 @@ services:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=password
       - ME_CONFIG_MONGODB_SERVER=mongodb
+#list all the volumes in this container
 volumes:
   mongo-data:
+  #tell it to create at the local filesystem
     driver: local
